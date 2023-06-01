@@ -1,0 +1,26 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class MatrixMultiplierTest {
+    @Test
+    public void testMultiplyMatrices() {
+        int[][] matrix1 = { { 1, 2, 3 }, { 4, 5, 6 } };
+        int[][] matrix2 = { { 7, 8 }, { 9, 10 }, { 11, 12 } };
+        int[][] expected = { { 58, 64 }, { 139, 154 } };
+
+        int[][] result = MatrixMultiplier.multiplyMatrices(matrix1, matrix2);
+
+        Assertions.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testLoadAndSaveMatrix() throws IOException {
+        int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
+        String filePath = "matrix.txt";
+
+        MatrixMultiplier.saveMatrixToFile(matrix, filePath);
+        int[][] loadedMatrix = MatrixMultiplier.loadMatrixFromFile(filePath);
+
+        Assertions.assertArrayEquals(matrix, loadedMatrix);
+    }
+}
